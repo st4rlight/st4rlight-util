@@ -2,12 +2,14 @@ package cn.st4rlight.util.value;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 /**
  * 默认值
@@ -28,6 +30,9 @@ public class DefaultUtil {
     }
     public static <T> List<T> nullToDefault(List<T> list) {
         return Objects.nonNull(list) ? list : Lists.newArrayList();
+    }
+    public static <T> Set<T> nullToDefault(Set<T> set) {
+        return Objects.nonNull(set) ? set : Sets.newHashSet();
     }
     public static <T> T nullToDefault(T value, T defaultValue) {
         return Objects.nonNull(value) ? value : defaultValue;
