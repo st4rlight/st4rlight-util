@@ -3,7 +3,7 @@ package cn.st4rlight.util.response;
 import lombok.Getter;
 
 /**
- * rest请求通用返回码
+ * rest请求返回码
  *
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-21

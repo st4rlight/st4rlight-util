@@ -6,7 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * rest请求通用结果
+ * rest请求响应
+ *
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-21
  */
