@@ -97,9 +97,9 @@ public class TransformUtil {
     }
 
     /**
-     * groupBy
+     * groupByToList
      */
-    public static <T, K> Map<K, List<T>> groupBy(List<T> originList, Function<T, K> keyMapper) {
+    public static <T, K> Map<K, List<T>> groupByToList(List<T> originList, Function<T, K> keyMapper) {
         return safeToStream(originList).collect(Collectors.groupingBy(keyMapper));
     }
     public static <T, K, V> Map<K, List<V>> groupByToList(List<T> originList, Function<T, K> keyMapper, Function<T, V> valueMapper) {
