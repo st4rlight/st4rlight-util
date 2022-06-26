@@ -1,14 +1,11 @@
 package cn.st4rlight.util.execute;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * 执行与重试工具类，默认执行1次，重试2次
  *
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-27
  */
-@Slf4j
 public class RunRetryUtil {
 
     /**
