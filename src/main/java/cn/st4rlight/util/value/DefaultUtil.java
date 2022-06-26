@@ -22,6 +22,9 @@ public class DefaultUtil {
     /**
      * null则转换成各类型默认值
      */
+    public static Integer nullToDefault(Integer value) {
+        return Objects.nonNull(value) ? value : 0;
+    }
     public static Long nullToDefault(Long value) {
         return Objects.nonNull(value) ? value : 0L;
     }
