@@ -13,6 +13,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTimeUtil {
 
+    private DateTimeUtil() {
+    }
+
+
     /**
      * 常用时间相关常量
      */

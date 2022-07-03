@@ -14,6 +14,10 @@ import cn.st4rlight.util.collection.TransformUtil;
  */
 public class NumberUtil {
 
+    private NumberUtil() {
+    }
+
+
     /**
      * 是否是正数，一般用于判断id是否有效的场景
      */

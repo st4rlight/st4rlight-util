@@ -19,6 +19,10 @@ import com.google.common.collect.Sets;
  */
 public class DefaultUtil {
 
+    private DefaultUtil() {
+    }
+
+
     /**
      * null则转换成各类型默认值
      */

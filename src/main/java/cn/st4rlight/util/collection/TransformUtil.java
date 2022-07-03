@@ -23,6 +23,9 @@ import cn.st4rlight.util.value.DefaultUtil;
  */
 public class TransformUtil {
 
+    private TransformUtil() {
+    }
+
 
     /**
      * entryToMap
