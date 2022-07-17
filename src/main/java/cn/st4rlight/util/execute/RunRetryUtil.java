@@ -25,7 +25,6 @@ public class RunRetryUtil {
      * 默认重试次数，执行1次 + 重试n次
      */
     private static final int DEFAULT_RETRY_TIMES = 2;
-
     /**
      * 重试间隔时间 / 秒
      */
@@ -50,21 +49,20 @@ public class RunRetryUtil {
      * @return 任务返回值
      */
     public static <T> T runWithRetry(Callable<T> callable, int retryTimes) throws ServiceException {
-        int runCnt = 1;
+        int runCnt = 0;
         Throwable throwable = null;
 
-        while (runCnt <= retryTimes  + 1) {
+        while (runCnt < retryTimes  + 1) {
             try {
                 return callable.call();
             } catch (Exception ex) {
-                log.error("第 {} 次执行失败, {}s 后重试", runCnt, RETRY_SLEEP_SEC, ex);
-                runCnt++;
+                log.error("第 {} 次执行失败, {}s 后重试", ++runCnt, RETRY_SLEEP_SEC, ex);
                 throwable = ex;
                 Uninterruptibles.sleepUninterruptibly(RETRY_SLEEP_SEC, TimeUnit.SECONDS);
             }
         }
 
-        throw ServiceException.of(String.format("执行%d后仍然失败", runCnt), throwable);
+        throw ServiceException.of(String.format("执行 %d 次后仍然失败", runCnt), throwable);
     }
 
 
@@ -112,20 +110,20 @@ public class RunRetryUtil {
      * @throws ServiceException 全部执行失败时抛出异常
      */
     public static void runWithRetry(ExceptionalRunnable runnable, int retryTimes) throws ServiceException {
-        int runCnt = 1;
+        int runCnt = 0;
         Throwable throwable = null;
 
-        while (runCnt <= retryTimes  + 1) {
+        while (runCnt < retryTimes  + 1) {
             try {
                 runnable.run();
+                return;
             } catch (Throwable ex) {
-                log.error("第 {} 次执行失败, {}s 后重试", runCnt, RETRY_SLEEP_SEC, ex);
-                runCnt++;
+                log.error("第 {} 次执行失败, {}s 后重试", ++runCnt, RETRY_SLEEP_SEC, ex);
                 throwable = ex;
                 Uninterruptibles.sleepUninterruptibly(RETRY_SLEEP_SEC, TimeUnit.SECONDS);
             }
         }
 
-        throw ServiceException.of(String.format("执行%d后仍然失败", runCnt), throwable);
+        throw ServiceException.of(String.format("执行 %d 次后仍然失败", runCnt), throwable);
     }
 }
