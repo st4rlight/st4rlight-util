@@ -1,5 +1,6 @@
 package cn.st4rlight.util.value;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -32,8 +33,12 @@ public class DefaultUtil {
     public static Long nullToDefault(Long value) {
         return Objects.nonNull(value) ? value : 0L;
     }
-    public static String blankToDefault(String value) {
+    public static String defaultIfBlank(String value) {
         return StringUtils.defaultIfBlank(value, StringUtils.EMPTY);
+    }
+
+    public static <T> Collection<T> nullToDefault(Collection<T> collection) {
+        return Objects.nonNull(collection) ? collection : Lists.newArrayList();
     }
     public static <T> List<T> nullToDefault(List<T> list) {
         return Objects.nonNull(list) ? list : Lists.newArrayList();
