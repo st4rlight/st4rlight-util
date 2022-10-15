@@ -1,4 +1,4 @@
-package cn.st4rlight.util.objectmapper;
+package cn.st4rlight.util.json;
 
 import java.util.Objects;
 
@@ -6,8 +6,8 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonFactory.Feature;
+import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -21,13 +21,15 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-22
  */
-public class ObjectMapperUtil {
+public class JsonUtil {
+
+    private JsonUtil() { /*空构造器，工具类禁止实例化*/ }
 
     /**
      * 关闭INTERN_FIELD_NAMES用于解决GC压力大，内存泄露问题
      */
     public static final ObjectMapper MAPPER =
-            new ObjectMapper(new JsonFactory().disable(Feature.INTERN_FIELD_NAMES))
+            new ObjectMapper(new JsonFactoryBuilder().configure(Feature.INTERN_FIELD_NAMES, false).build())
                     .registerModule(new GuavaModule())
                     .registerModule(new JavaTimeModule());
 

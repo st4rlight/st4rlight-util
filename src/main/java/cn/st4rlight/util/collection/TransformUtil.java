@@ -1,5 +1,7 @@
 package cn.st4rlight.util.collection;
 
+import static cn.st4rlight.util.collection.StreamUtil.safeToStream;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +12,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.google.common.collect.Maps;
-
-import cn.st4rlight.util.value.DefaultUtil;
 
 /**
  * 集合类型转换
@@ -24,9 +23,7 @@ import cn.st4rlight.util.value.DefaultUtil;
  */
 public class TransformUtil {
 
-    private TransformUtil() {
-    }
-
+    private TransformUtil() { /*空构造器，工具类禁止实例化*/ }
 
     /**
      * entryToMap
@@ -53,13 +50,6 @@ public class TransformUtil {
     }
     public static <T, R> Set<R> toSet(List<T> originCollection, Function<T, R> mapFunction) {
         return safeToStream(originCollection).map(mapFunction).collect(Collectors.toSet());
-    }
-
-    /**
-     * toStream
-     */
-    public static <T> Stream<T> safeToStream(Collection<T> originCollection) {
-        return DefaultUtil.nullToDefault(originCollection).stream().filter(Objects::nonNull);
     }
 
     /**

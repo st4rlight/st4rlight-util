@@ -18,8 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RunRetryUtil {
 
-    private RunRetryUtil() {
-    }
+    private RunRetryUtil() { /*空构造器，工具类禁止实例化*/ }
 
     /**
      * 默认重试次数，执行1次 + 重试n次

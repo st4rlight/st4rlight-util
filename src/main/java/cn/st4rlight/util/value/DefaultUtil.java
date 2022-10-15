@@ -20,8 +20,7 @@ import com.google.common.collect.Sets;
  */
 public class DefaultUtil {
 
-    private DefaultUtil() {
-    }
+    private DefaultUtil() { /*空构造器，工具类禁止实例化*/ }
 
 
     /**

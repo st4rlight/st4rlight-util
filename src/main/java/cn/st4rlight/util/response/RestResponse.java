@@ -36,4 +36,8 @@ public class RestResponse<T> {
     public static <T> RestResponse<T> ok(T data) {
         return new RestResponse<>(ResultCode.SUCCESS.getCode(), data, StringUtils.EMPTY);
     }
+
+    public static <T> RestResponse<T> error(ResultCode errorCode, String errMsg) {
+        return new RestResponse<>(errorCode.getCode(), null, errMsg);
+    }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-import cn.st4rlight.util.collection.TransformUtil;
+import cn.st4rlight.util.collection.StreamUtil;
 
 /**
  * 数值判断等
@@ -14,8 +14,7 @@ import cn.st4rlight.util.collection.TransformUtil;
  */
 public class NumberUtil {
 
-    private NumberUtil() {
-    }
+    private NumberUtil() { /*空构造器，工具类禁止实例化*/ }
 
 
     /**
@@ -33,14 +32,14 @@ public class NumberUtil {
      * NOTE: 使用时确保不会超过数值有效范围
      */
     public static <T> int toIntSum(List<T> originList, Function<T, Integer> mapper) {
-        return TransformUtil.safeToStream(originList)
+        return StreamUtil.safeToStream(originList)
                 .map(mapper)
                 .map(DefaultUtil::nullToDefault)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
     public static <T> long toLongSum(List<T> originList, Function<T, Long> mapper) {
-        return TransformUtil.safeToStream(originList)
+        return StreamUtil.safeToStream(originList)
                 .map(mapper)
                 .map(DefaultUtil::nullToDefault)
                 .mapToLong(Long::longValue)
