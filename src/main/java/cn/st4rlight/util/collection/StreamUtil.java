@@ -1,6 +1,7 @@
 package cn.st4rlight.util.collection;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -19,16 +20,16 @@ public class StreamUtil {
     private StreamUtil() { /*空构造器，工具类禁止实例化*/ }
 
     /**
-     * 扩充常用的stream
-     */
-    public static <T> Collection<T> filter(Collection<T> originCollection, Predicate<T> predicate) {
-        return safeToStream(originCollection).filter(predicate).collect(Collectors.toList());
-    }
-
-    /**
      * toStream
      */
     public static <T> Stream<T> safeToStream(Collection<T> originCollection) {
         return DefaultUtil.nullToDefault(originCollection).stream().filter(Objects::nonNull);
+    }
+
+    /**
+     * 扩充常用的stream
+     */
+    public static <T> List<T> filter(Collection<T> originCollection, Predicate<T> predicate) {
+        return safeToStream(originCollection).filter(predicate).collect(Collectors.toList());
     }
 }
