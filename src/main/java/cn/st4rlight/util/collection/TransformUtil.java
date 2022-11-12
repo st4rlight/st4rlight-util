@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -25,12 +24,6 @@ public class TransformUtil {
 
     private TransformUtil() { /*空构造器，工具类禁止实例化*/ }
 
-    /**
-     * entryToMap
-     */
-    public static <K, V> Map<K, V> entrySetToMap(Set<Map.Entry<K, V>> entrySet) {
-        return toMap(entrySet, Map.Entry::getKey, Map.Entry::getValue);
-    }
 
     /**
      * toList
@@ -69,12 +62,17 @@ public class TransformUtil {
     public static <T, K, V> Map<K, V> toMap(
         Collection<T> originCollection, Function<T, K> keyMapper, Function<T, V> valueMapper
     ) {
-        return safeToStream(originCollection)
-                .filter(Objects::nonNull)
-                .collect(HashMap::new,
-                    (m, t) -> m.put(keyMapper.apply(t), valueMapper.apply(t)),
+        return safeToStream(originCollection).collect(HashMap::new,
+                    (map, item) -> map.put(keyMapper.apply(item), valueMapper.apply(item)),
                     HashMap::putAll
                 );
+    }
+
+    /**
+     * entryToMap
+     */
+    public static <K, V> Map<K, V> entrySetToMap(Set<Map.Entry<K, V>> entrySet) {
+        return toMap(entrySet, Map.Entry::getKey, Map.Entry::getValue);
     }
 
     /**
@@ -87,9 +85,7 @@ public class TransformUtil {
         Collection<T> originCollection, Function<T, K> keyMapper, Function<T, V> valueMapper
     ) {
         // 第一层map转换
-        Map<K, List<T>> map = safeToStream(originCollection)
-                .filter(Objects::nonNull)
-                .collect(Collectors.groupingBy(keyMapper));
+        Map<K, List<T>> map = groupByToList(originCollection, keyMapper);
         // 第二层转换
         Map<K, List<V>> resultMap = Maps.newHashMap();
         map.forEach((key, value) -> {
