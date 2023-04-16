@@ -18,9 +18,11 @@ import com.google.common.collect.Sets;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-11
  */
-public class DefaultUtil {
+public class MoreDefault {
 
-    private DefaultUtil() { /*空构造器，工具类禁止实例化*/ }
+    private MoreDefault() {
+        throw new UnsupportedOperationException();
+    }
 
 
     /**

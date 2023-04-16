@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-import cn.st4rlight.util.collection.StreamUtil;
+import cn.st4rlight.util.collection.MoreStream;
 
 /**
  * 数值判断等
@@ -12,9 +12,11 @@ import cn.st4rlight.util.collection.StreamUtil;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-12
  */
-public class NumberUtil {
+public class MoreNumber {
 
-    private NumberUtil() { /*空构造器，工具类禁止实例化*/ }
+    private MoreNumber() {
+        throw new UnsupportedOperationException();
+    }
 
 
     /**
@@ -32,16 +34,16 @@ public class NumberUtil {
      * NOTE: 使用时确保不会超过数值有效范围
      */
     public static <T> int toIntSum(List<T> originList, Function<T, Integer> mapper) {
-        return StreamUtil.safeToStream(originList)
+        return MoreStream.safeToStream(originList)
                 .map(mapper)
-                .map(DefaultUtil::nullToDefault)
+                .map(MoreDefault::nullToDefault)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
     public static <T> long toLongSum(List<T> originList, Function<T, Long> mapper) {
-        return StreamUtil.safeToStream(originList)
+        return MoreStream.safeToStream(originList)
                 .map(mapper)
-                .map(DefaultUtil::nullToDefault)
+                .map(MoreDefault::nullToDefault)
                 .mapToLong(Long::longValue)
                 .sum();
     }

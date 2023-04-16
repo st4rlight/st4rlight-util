@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import cn.st4rlight.util.value.DefaultUtil;
+import cn.st4rlight.util.value.MoreDefault;
 
 /**
  * 对java8的stream功能做扩展封装
@@ -15,15 +15,17 @@ import cn.st4rlight.util.value.DefaultUtil;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-10-15
  */
-public class StreamUtil {
+public class MoreStream {
 
-    private StreamUtil() { /*空构造器，工具类禁止实例化*/ }
+    private MoreStream() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * toStream
      */
     public static <T> Stream<T> safeToStream(Collection<T> originCollection) {
-        return DefaultUtil.nullToDefault(originCollection).stream().filter(Objects::nonNull);
+        return MoreDefault.nullToDefault(originCollection).stream().filter(Objects::nonNull);
     }
 
     /**

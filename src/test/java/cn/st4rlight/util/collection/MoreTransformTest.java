@@ -12,7 +12,7 @@ import cn.st4rlgiht.util.common.TestCaseFactory;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-11-12
  */
-class TransformUtilTest {
+class MoreTransformTest {
 
     private List<TestCase> testCaseList;
 

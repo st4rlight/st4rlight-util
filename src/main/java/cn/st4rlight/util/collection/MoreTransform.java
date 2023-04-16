@@ -1,6 +1,6 @@
 package cn.st4rlight.util.collection;
 
-import static cn.st4rlight.util.collection.StreamUtil.safeToStream;
+import static cn.st4rlight.util.collection.MoreStream.safeToStream;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,9 +20,11 @@ import com.google.common.collect.Maps;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-11
  */
-public class TransformUtil {
+public class MoreTransform {
 
-    private TransformUtil() { /*空构造器，工具类禁止实例化*/ }
+    private MoreTransform() {
+        throw new UnsupportedOperationException();
+    }
 
 
     /**
