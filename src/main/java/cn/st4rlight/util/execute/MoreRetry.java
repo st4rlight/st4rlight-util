@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.util.concurrent.Uninterruptibles;
 
 import cn.st4rlight.util.exception.ServiceException;
-import cn.st4rlight.util.lambda.ExceptionalRunnable;
+import cn.st4rlight.util.lambda.ThrowableRunnable;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
  * Created on 2022-06-27
  */
 @Slf4j
-public class RunRetryUtil {
+public class MoreRetry {
 
-    private RunRetryUtil() { /*空构造器，工具类禁止实例化*/ }
+    private MoreRetry() { /*空构造器，工具类禁止实例化*/ }
 
     /**
      * 默认重试次数，执行1次 + 重试n次
@@ -71,7 +71,7 @@ public class RunRetryUtil {
      * @param runnable 需要执行的可能失败的任务, 不带返回值, 可抛出异常
      * @return 是否执行成功
      */
-    public static boolean runWithRetryReturnBool(ExceptionalRunnable runnable) {
+    public static boolean runWithRetryReturnBool(ThrowableRunnable runnable) {
         return runWithRetryReturnBool(runnable, DEFAULT_RETRY_TIMES);
     }
     /**
@@ -81,7 +81,7 @@ public class RunRetryUtil {
      * @param retryTimes 重试次数
      * @return 是否执行成功
      */
-    public static boolean runWithRetryReturnBool(ExceptionalRunnable runnable, int retryTimes) {
+    public static boolean runWithRetryReturnBool(ThrowableRunnable runnable, int retryTimes) {
         try {
             runWithRetry(runnable, retryTimes);
             return true;
@@ -98,7 +98,7 @@ public class RunRetryUtil {
      * @param runnable 需要执行的可能失败的任务, 不带返回值, 可抛出异常
      * @throws ServiceException 全部执行失败时抛出异常
      */
-    public static void runWithRetry(ExceptionalRunnable runnable) throws ServiceException {
+    public static void runWithRetry(ThrowableRunnable runnable) throws ServiceException {
         runWithRetry(runnable, DEFAULT_RETRY_TIMES);
     }
     /**
@@ -108,7 +108,7 @@ public class RunRetryUtil {
      * @param retryTimes 重试次数
      * @throws ServiceException 全部执行失败时抛出异常
      */
-    public static void runWithRetry(ExceptionalRunnable runnable, int retryTimes) throws ServiceException {
+    public static void runWithRetry(ThrowableRunnable runnable, int retryTimes) throws ServiceException {
         int runCnt = 0;
         Throwable throwable = null;
 

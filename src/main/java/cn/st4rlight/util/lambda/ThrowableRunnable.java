@@ -7,12 +7,12 @@ package cn.st4rlight.util.lambda;
  * Created on 2022-06-27
  */
 @FunctionalInterface
-public interface ExceptionalRunnable {
+public interface ThrowableRunnable {
 
     /**
      * 具体执行逻辑
      *
-     * @throws Throwable 各种可能的异常
+     * @throws Exception 各种可能的异常
      */
-    void run() throws Throwable;
+    void run() throws Exception;
 }
