@@ -23,7 +23,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  */
 public class JsonUtil {
 
-    private JsonUtil() { /*空构造器，工具类禁止实例化*/ }
+    private JsonUtil() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * 关闭INTERN_FIELD_NAMES用于解决GC压力大，内存泄露问题

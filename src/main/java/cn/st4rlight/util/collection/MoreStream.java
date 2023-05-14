@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import cn.st4rlight.util.value.MoreDefault;
+import cn.st4rlight.util.value.DefaultUtil;
 
 /**
  * 对java8的stream功能做扩展封装
@@ -25,7 +25,7 @@ public class MoreStream {
      * toStream
      */
     public static <T> Stream<T> safeToStream(Collection<T> originCollection) {
-        return MoreDefault.nullToDefault(originCollection).stream().filter(Objects::nonNull);
+        return DefaultUtil.nullToDefault(originCollection).stream().filter(Objects::nonNull);
     }
 
     /**

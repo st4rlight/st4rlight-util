@@ -36,14 +36,14 @@ public class MoreNumber {
     public static <T> int toIntSum(List<T> originList, Function<T, Integer> mapper) {
         return MoreStream.safeToStream(originList)
                 .map(mapper)
-                .map(MoreDefault::nullToDefault)
+                .map(DefaultUtil::nullToDefault)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
     public static <T> long toLongSum(List<T> originList, Function<T, Long> mapper) {
         return MoreStream.safeToStream(originList)
                 .map(mapper)
-                .map(MoreDefault::nullToDefault)
+                .map(DefaultUtil::nullToDefault)
                 .mapToLong(Long::longValue)
                 .sum();
     }

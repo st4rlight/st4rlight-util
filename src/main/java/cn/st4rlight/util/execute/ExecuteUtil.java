@@ -16,9 +16,9 @@ import lombok.extern.slf4j.Slf4j;
  * Created on 2022-06-27
  */
 @Slf4j
-public class MoreRetry {
+public class ExecuteUtil {
 
-    private MoreRetry() { /*空构造器，工具类禁止实例化*/ }
+    private ExecuteUtil() { /*空构造器，工具类禁止实例化*/ }
 
     /**
      * 默认重试次数，执行1次 + 重试n次

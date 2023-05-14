@@ -18,9 +18,9 @@ import com.google.common.collect.Sets;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-11
  */
-public class MoreDefault {
+public class DefaultUtil {
 
-    private MoreDefault() {
+    private DefaultUtil() {
         throw new UnsupportedOperationException();
     }
 

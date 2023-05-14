@@ -20,9 +20,9 @@ import com.google.common.collect.Maps;
  * @author st4rlight <st4rlight@163.com>
  * Created on 2022-06-11
  */
-public class MoreTransform {
+public class TransformUtil {
 
-    private MoreTransform() {
+    private TransformUtil() {
         throw new UnsupportedOperationException();
     }
 
