@@ -1,5 +1,6 @@
 package cn.st4rlight.util.execute;
 
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import cn.st4rlight.util.lambda.ThrowableRunnable;
@@ -26,6 +27,13 @@ public class MoreRunnable {
             throw new RuntimeException(ex);
         }
     }
+    public static void runIgnoreException(ThrowableRunnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception ex) {
+            log.error("", ex);
+        }
+    }
 
     /**
      * 简单封装，用于不想在代码中直接try-catch
@@ -36,5 +44,14 @@ public class MoreRunnable {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+    public static <T> Optional<T> getIgnoreException(Callable<T> callable) {
+        try {
+            return Optional.ofNullable(callable.call());
+        } catch (Exception ex) {
+            log.error("", ex);
+        }
+
+        return Optional.empty();
     }
 }
